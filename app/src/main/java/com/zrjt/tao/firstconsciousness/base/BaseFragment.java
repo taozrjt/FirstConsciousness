@@ -1,9 +1,9 @@
 package com.zrjt.tao.firstconsciousness.base;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,11 +48,20 @@ public abstract class BaseFragment extends Fragment {
         } else {
             mRootView = inflater.inflate(getLayoutId(), container, false);
             onBindViewBefore(mRootView);
-            ButterKnife.bind(mContext, mRootView);
+            ButterKnife.bind(this, mRootView);
+            // Get savedInstanceState
+            if (savedInstanceState != null) {
+                onRestartInstance(savedInstanceState);
+            }
             initWidget(mRootView);
             initData();
         }
         return mRootView;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
     /**
@@ -71,4 +80,6 @@ public abstract class BaseFragment extends Fragment {
     protected void initData() {
     }
 
+    protected void onRestartInstance(Bundle bundle) {
+    }
 }

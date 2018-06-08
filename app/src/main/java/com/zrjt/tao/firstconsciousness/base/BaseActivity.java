@@ -19,15 +19,19 @@ import butterknife.ButterKnife;
  * @date 2018/6/6
  */
 
-public class BaseActivity extends SwipeBackActivity implements BaseInterface {
+public abstract class BaseActivity extends SwipeBackActivity {
 
     private Fragment mFragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getLayoutId());
         setSwipeBackEnable(false);
+        initWindow();
         ButterKnife.bind(this);
+        initWidget();
+        initData();
     }
 
     protected void addFragment(int frameLayoutId, Fragment fragment) {
@@ -54,12 +58,15 @@ public class BaseActivity extends SwipeBackActivity implements BaseInterface {
     public void showLoadingDialog(String tips) {
     }
 
-    @Override
-    public void initData() {
+    public abstract int getLayoutId();
+
+    public void initWindow() {
     }
 
-    @Override
-    public void initView(View view) {
+    public void initWidget() {
+    }
+
+    public void initData() {
     }
 
     @Override

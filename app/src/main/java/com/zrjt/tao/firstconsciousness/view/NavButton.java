@@ -1,10 +1,13 @@
 package com.zrjt.tao.firstconsciousness.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.annotation.StringRes;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,9 +24,11 @@ import com.zrjt.tao.firstconsciousness.R;
 
 public class NavButton extends FrameLayout {
 
-    ImageView mIvIcon;
-    TextView mTvTitle;
-    TextView mTvDots;
+    private Class<?> mClx;
+    private String mTag;
+    private ImageView mIvIcon;
+    private TextView mTvTitle;
+    private TextView mTvDots;
 
     public NavButton(@NonNull Context context) {
         super(context);
@@ -64,5 +69,15 @@ public class NavButton extends FrameLayout {
     public void setCount(int count) {
         mTvDots.setVisibility(count > 0 ? VISIBLE : GONE);
         mTvDots.setText(String.valueOf(count));
+    }
+
+    /**
+     * 初始化toolbar图标
+     */
+    public void initItemIcon(@DrawableRes int resId, @SuppressLint("SupportAnnotationUsage") @StringRes String title, Class<?> clx) {
+        mIvIcon.setImageResource(resId);
+        mTvTitle.setText(String.valueOf(title));
+       /* mClx = clx;
+        mTag = clx.getName();*/
     }
 }
