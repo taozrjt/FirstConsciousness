@@ -10,7 +10,6 @@ import android.support.annotation.RequiresApi;
 import android.support.annotation.StringRes;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -53,10 +52,10 @@ public class NavButton extends FrameLayout {
 
     private void init() {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        View view = inflater.inflate(R.layout.item_nav_buttom, null);
-        mIvIcon = view.findViewById(R.id.nav_iv_icon);
-        mTvTitle = view.findViewById(R.id.nav_tv_title);
-        mTvDots = view.findViewById(R.id.nav_tv_dot);
+        inflater.inflate(R.layout.item_nav_buttom, this, true);
+        mIvIcon = findViewById(R.id.nav_iv_icon);
+        mTvTitle = findViewById(R.id.nav_tv_title);
+        mTvDots = findViewById(R.id.nav_tv_dot);
     }
 
     @Override
